@@ -1,0 +1,62 @@
+"""
+Contains Duplicate
+Given an integer array nums, return true if any value appears more than once in the array, otherwise return false.
+
+Example 1:
+Input: nums = [1, 2, 3, 3]
+Output: true
+
+Example 2:
+Input: nums = [1, 2, 3, 4]
+Output: false
+
+Recommended Time & Space Complexity
+You should aim for a solution with O(n) time and O(n) space, where n is the size of the input array.
+
+
+Hint 1
+A brute force solution would be to check every element against every other element in the array. This would be an O(n^2) solution. Can you think of a better way?
+
+
+Hint 2
+Is there a way to check if an element is a duplicate without comparing it to every other element? Maybe there's a data structure that is useful here.
+
+
+Hint 3
+We can use a hash data structure like a hash set or hash map to store elements we've already seen. This will allow us to check if an element is a duplicate in constant time.
+"""
+
+nums = [1,2,3,3]
+or
+#nums = [1,2,3,4]
+## Solution 1 Brute Force
+class Solution:
+    def hasDuplicate(self, nums: list[int]) -> bool:
+        for i in range(len(nums)):
+            for j in range(i + 1, len(nums)):
+                if nums[i] == nums[j]:
+                    return True
+        return False
+
+## Solution 2 Sorting
+
+class Solution:
+    def hasDuplicate(self, nums: List[int]) -> bool:
+        nums.sort()
+        for i in range(1, len(nums)):
+            if nums[i] == nums[i - 1]:
+                return True
+        return False
+
+
+## Solution 3 Hashset advanced
+class Solution:
+    def hasDuplicate(self, nums: List[int]) -> bool:
+        hashset = set()
+
+        for n in nums:
+            if n in hashset:
+                return True
+            hashset.add(n)
+        return False
+
